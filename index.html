@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<!--
+  LONE GULL 10K — website mockup / Cornerstone build reference
+  Built by OctoCog Marketing & Design.
+  PALETTE: white + shades of blue, sampled from the official Lone Gull logo/ad
+    (navy #0C2D4F, royal #004AAD, mid #1E6FB8, pale #C6D5E7 / #E0E8EC, slate #293845).
+  Single light theme by design.
+  Fonts: Barlow Condensed (display) + Barlow (body) via Google Fonts, system fallbacks.
+  Real content/taglines pulled from the official Lone Gull ad (Good Harbor Beach start,
+    "Scenic. Fast. Meaningful.", USATF Grand Prix Series, feature blurbs, breakfast, etc.).
+  Official logo art saved in ./images/ (lone-gull-logo-ad.svg / .png) — drop the clean
+    logo lockup into the header/hero when you have it.
+  Photos are PLACEHOLDERS — add images to ./images/ and swap the .ph blocks / <img src>.
+  Section markers (SECTION: …) map 1:1 to Cornerstone sections.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lone Gull 10K — Good Harbor Beach, Gloucester, MA · Cape Ann Road Race</title>
+<meta name="description" content="The Lone Gull 10K is an iconic seaside road race at Good Harbor Beach in Gloucester, MA. Scenic. Fast. Meaningful. Sunday, September 20, 2026. All proceeds benefit CCCBSD.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0c2d4f; --navy-2:#0e2f57;
+    --royal:#004aad; --royal-dark:#003a86;
+    --blue:#1e6fb8; --blue-soft:#3f86c7;
+    --pale:#c6d5e7; --mist:#e6edf3; --mist-2:#dbe6f0;
+    --slate:#293845; --ink:#152436; --muted:#5a6b7c; --line:#d3e0ec;
+    --wrap:1160px;
+    --disp:"Barlow Condensed","Oswald","Arial Narrow",sans-serif;
+    --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--body);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.disp{font-family:var(--disp);text-transform:uppercase;line-height:1.02;margin:0;letter-spacing:.01em}
+  a{color:var(--royal);text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:var(--disp);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--royal);font-size:14px;margin:0 0 14px}
+
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+    font-size:18px;padding:14px 30px;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:.15s;white-space:nowrap}
+  .btn-royal{background:var(--royal);color:#fff;border-color:var(--royal)}
+  .btn-royal:hover{background:var(--royal-dark);border-color:var(--royal-dark);color:#fff}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+  .btn-ghost:hover{background:#fff;color:var(--navy);border-color:#fff}
+  .btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .btn-navy:hover{background:var(--navy-2);border-color:var(--navy-2);color:#fff}
+  .btn-outline{background:transparent;color:var(--navy);border-color:var(--navy)}
+  .btn-outline:hover{background:var(--navy);color:#fff}
+
+  /* ============ SECTION: Header / Nav ============ */
+  header.nav{position:sticky;top:0;z-index:50;background:#fff;color:var(--navy);box-shadow:0 2px 16px rgba(12,45,79,.1);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;height:78px}
+  .brand{display:flex;align-items:center}
+  .brand img{height:52px;width:auto;display:block}
+  nav.links{display:flex;align-items:center;gap:26px}
+  nav.links a{color:var(--navy);font-weight:600;font-size:15px;letter-spacing:.02em}
+  nav.links a:hover{color:var(--royal)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-cta .btn{font-size:15px;padding:10px 20px}
+  .burger{display:none;background:none;border:0;color:var(--navy);font-size:26px;cursor:pointer;padding:4px 8px}
+  .mobile-menu{display:none;background:#fff;border-top:1px solid var(--line);box-shadow:0 12px 20px rgba(12,45,79,.08)}
+  .mobile-menu.open{display:block}
+  .mobile-menu a{display:block;color:var(--navy);padding:14px 24px;font-weight:600;border-bottom:1px solid var(--line)}
+
+  /* ============ SECTION: Hero ============ */
+  .hero{position:relative;color:#fff;overflow:hidden;background-color:var(--navy);
+    background-image:linear-gradient(90deg,rgba(8,28,52,.92) 0%,rgba(12,45,79,.7) 52%,rgba(12,45,79,.5) 100%),url("images/hero-coast.jpg");
+    background-size:cover;background-position:center 42%}
+  .hero .waves{position:absolute;left:0;right:0;bottom:-1px;width:100%;display:block}
+  .hero-inner{position:relative;z-index:2;padding:84px 0 132px;max-width:840px}
+  .hero h1{font-size:clamp(58px,11vw,130px);font-weight:700;text-shadow:0 2px 26px rgba(0,0,0,.28)}
+  .hero .tag{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:#bcd7f0;font-size:clamp(16px,2vw,20px);margin:14px 0 0}
+  .hero .sub{font-size:clamp(18px,2.4vw,22px);color:#e6eff8;font-weight:500;margin:18px 0 26px;max-width:600px}
+  .datechip{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);
+    border-radius:999px;padding:9px 20px;font-family:var(--disp);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:17px;margin-bottom:30px}
+  .datechip .dot{color:#7fb0e0}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+  .gull-mark{position:absolute;right:-30px;top:26px;width:min(48%,560px);opacity:.12;z-index:1}
+
+  /* ============ SECTION: Stats bar ============ */
+  .stats{background:var(--royal);color:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:26px 24px}
+  .stat{text-align:center;padding:6px}
+  .stat b{display:block;font-family:var(--disp);font-weight:700;font-size:29px;line-height:1}
+  .stat span{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#cfe0f4;font-weight:600}
+  .stat + .stat{border-left:1px solid rgba(255,255,255,.28)}
+
+  section.band{padding:84px 0}
+  .band.mist{background:var(--mist)}
+  .band.navy{background:var(--navy);color:#fff}
+  .center{text-align:center;max-width:740px;margin:0 auto}
+  h2.big{font-size:clamp(34px,5vw,52px);font-weight:700;color:var(--navy)}
+  .band.navy h2.big{color:#fff}
+  .lead{font-size:19px;color:var(--muted);margin-top:16px}
+  .band.navy .lead{color:#c6d5e7}
+
+  /* ============ SECTION: Features ============ */
+  .feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px}
+  .feat{text-align:center;padding:8px}
+  .feat .ic{width:56px;height:56px;margin:0 auto 14px;border-radius:14px;background:var(--mist);display:flex;align-items:center;justify-content:center;color:var(--royal)}
+  .feat .ic svg{width:30px;height:30px}
+  .feat h4{font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em;color:var(--navy);font-size:18px;margin:0 0 6px}
+  .feat p{margin:0;color:var(--muted);font-size:14.5px}
+
+  /* details */
+  .detail-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;margin-top:14px}
+  .facts{list-style:none;margin:0;padding:0}
+  .facts li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .facts li:last-child{border-bottom:0}
+  .facts .k{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);min-width:150px;font-size:16px;padding-top:2px}
+  .facts .v{font-weight:500}
+  .facts .v small{display:block;color:var(--muted);font-weight:400}
+  .price{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .price span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600}
+  .price span b{color:var(--royal)}
+  .cardbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:0 18px 44px -28px rgba(12,45,79,.5)}
+  .cardbox h3{font-size:24px;color:var(--navy);margin-bottom:8px}
+
+  /* placeholder image blocks */
+  .ph{position:relative;border-radius:14px;overflow:hidden;
+    background:linear-gradient(160deg,#c6d5e7,#7fa8cf 55%,#3f6f9e);
+    display:flex;align-items:center;justify-content:center;min-height:220px}
+  .ph .lbl{position:relative;z-index:2;text-align:center;font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:#0c2d4f;opacity:.85}
+  .ph .lbl svg{width:44px;height:44px;display:block;margin:0 auto 8px;opacity:.6}
+  .ph.tall{min-height:340px}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+  .gallery .ph:first-child{grid-column:span 2;grid-row:span 2}
+  .gallery a{display:block;overflow:hidden;border-radius:14px}
+  .gallery a:first-child{grid-column:span 2;grid-row:span 2}
+  .gallery img{width:100%;height:100%;object-fit:cover;min-height:220px;display:block;transition:transform .4s}
+  .gallery a:hover img{transform:scale(1.05)}
+
+  .course-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .coursemap{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px -26px rgba(12,45,79,.5);background:#fff}
+  .coursemap img{width:100%;display:block;transition:transform .4s}
+  .coursemap:hover img{transform:scale(1.02)}
+  .benef{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  .benef figure{margin:0}
+  .benef img{width:100%;border-radius:16px;display:block;box-shadow:0 26px 54px -24px rgba(0,0,0,.65)}
+  .benef figcaption{margin-top:12px;font-size:14px;color:#9fc4e8;font-style:italic;text-align:left}
+
+  /* badge circle (Scenic. Fast. Meaningful.) */
+  .badge{width:180px;height:180px;border-radius:50%;background:var(--navy);color:#fff;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;border:3px solid rgba(255,255,255,.25);flex:none}
+  .badge b{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:22px;line-height:1.1}
+  .badge span{font-size:14px;color:#a9c6e6;margin-top:8px;font-style:italic}
+
+  /* ============ SECTION: Cross-promo NSRF ============ */
+  .promo{background:linear-gradient(135deg,#1e6fb8,#0c2d4f);color:#fff;border-radius:20px;padding:44px;display:grid;grid-template-columns:1.3fr .7fr;gap:34px;align-items:center}
+  .promo .eyebrow{color:#9fc4e8}
+  .promo h3{font-size:clamp(28px,4vw,40px);font-weight:700}
+  .promo p{color:#d3e2f2;margin:12px 0 0;font-size:17px}
+  .promo .meta{margin-top:14px;font-family:var(--disp);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9fc4e8;font-size:16px}
+  .promo-cta{justify-self:end}
+  @media (max-width:760px){.promo-cta{justify-self:start}}
+
+  .sponsor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:12px}
+  .scard{background:#fff;border:1px solid var(--line);border-radius:14px;min-height:120px;display:flex;align-items:center;justify-content:center;padding:22px;box-shadow:0 10px 26px -20px rgba(12,45,79,.4)}
+  .scard img{max-width:100%;max-height:58px;width:auto;opacity:.82;transition:opacity .2s}
+  .scard:hover img{opacity:1}
+
+  .faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:12px}
+  .faq{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+  .faq h4{font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em;color:var(--navy);font-size:19px;margin:0 0 8px}
+  .faq p{margin:0;color:var(--muted)}
+
+  .finalcta{background:linear-gradient(135deg,var(--royal),var(--navy));color:#fff;text-align:center;padding:76px 24px}
+  .finalcta h2{font-size:clamp(32px,5vw,52px);font-weight:700;color:#fff}
+  .finalcta p{font-size:19px;color:#d3e2f2;margin:14px 0 28px}
+
+  /* ============ SECTION: Footer ============ */
+  footer{background:#08203a;color:#b9cbe0}
+  .foot-main{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px;padding:60px 0 44px}
+  .foot-brand p{margin:14px 0 0;font-size:15px;color:#8aa3bf;max-width:320px}
+  footer h5{font-family:var(--disp);text-transform:uppercase;letter-spacing:.1em;color:#fff;font-size:15px;margin:0 0 16px}
+  footer ul{list-style:none;margin:0;padding:0}
+  footer ul li{margin-bottom:10px}
+  footer ul a{color:#b9cbe0}
+  footer ul a:hover{color:#fff}
+  .socials{display:flex;gap:12px;margin-top:6px}
+  .socials a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;color:#fff}
+  .socials a:hover{background:var(--royal)}
+  .socials svg{width:18px;height:18px}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#7f97b3}
+  .foot-bottom a{color:#b9cbe0;font-weight:600}
+  .foot-bottom a:hover{color:#7fb0e0}
+
+  @media (max-width:900px){
+    nav.links{display:none}
+    .burger{display:block}
+    .detail-grid,.course-grid,.benef,.promo{grid-template-columns:1fr}
+    .feat-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-main{grid-template-columns:1fr 1fr}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .sponsor-grid{grid-template-columns:repeat(2,1fr)}
+    .faq-grid{grid-template-columns:1fr}
+    .stats .wrap{grid-template-columns:repeat(2,1fr);gap:18px}
+    .stat + .stat{border-left:0}
+    .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid rgba(255,255,255,.28);padding-top:16px}
+    .benef{text-align:center}
+    .badge{margin:0 auto}
+  }
+  @media (max-width:560px){
+    .feat-grid{grid-template-columns:1fr}
+    .gallery .ph:first-child{grid-column:span 2}
+    .foot-main{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SECTION: Header / Nav ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Lone Gull 10K home">
+      <img src="images/lone-gull-logo.png" alt="Lone Gull 10K — Gloucester, Cape Ann">
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#details">Details</a>
+      <a href="#course">Course</a>
+      <a href="#cause">The Cause</a>
+      <a href="#sponsors">Sponsors</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-royal" href="https://raceroster.com/events/2026/114317/lone-gull-10k-2026" target="_blank" rel="noopener">Register</a>
+      <button class="burger" aria-label="Menu" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mm">
+    <a href="#about" onclick="document.getElementById('mm').classList.remove('open')">About</a>
+    <a href="#details" onclick="document.getElementById('mm').classList.remove('open')">Details</a>
+    <a href="#course" onclick="document.getElementById('mm').classList.remove('open')">Course</a>
+    <a href="#cause" onclick="document.getElementById('mm').classList.remove('open')">The Cause</a>
+    <a href="#sponsors" onclick="document.getElementById('mm').classList.remove('open')">Sponsors</a>
+  </div>
+</header>
+
+<a id="top"></a>
+<!-- ============ SECTION: Hero ============ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow" style="color:#9fc4e8">Good Harbor Beach · Gloucester, MA</p>
+    <h1>Lone Gull<br>10K</h1>
+    <p class="tag">Scenic. Fast. Meaningful. — Run Gloucester.</p>
+    <p class="sub">An iconic seaside road race along the rocky Atlantic coast of Cape Ann — a USATF Grand Prix event, run for a cause that matters.</p>
+    <div class="datechip"><span class="dot">●</span> Sun · September 20, 2026 · 9:00 AM</div>
+    <div class="hero-btns">
+      <a class="btn btn-royal" href="https://raceroster.com/events/2026/114317/lone-gull-10k-2026" target="_blank" rel="noopener">Register Now</a>
+      <a class="btn btn-ghost" href="#course">View the Course</a>
+    </div>
+  </div>
+  <svg class="waves" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,50 C240,90 480,10 720,40 C960,70 1200,20 1440,50 L1440,90 L0,90 Z" fill="#ffffff"/>
+  </svg>
+</section>
+
+<!-- ============ SECTION: Stats bar ============ -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>10K</b><span>6.2 Miles</span></div>
+    <div class="stat"><b>9:00 AM</b><span>Sept 20, 2026</span></div>
+    <div class="stat"><b>Good Harbor</b><span>Gloucester, MA</span></div>
+    <div class="stat"><b>USATF</b><span>Certified Course</span></div>
+  </div>
+</div>
+
+<!-- ============ SECTION: About / Intro ============ -->
+<section class="band" id="about">
+  <div class="wrap center">
+    <p class="eyebrow">A North Shore Classic</p>
+    <h2 class="big">More than a 10K — it&rsquo;s a Cape Ann tradition</h2>
+    <p class="lead">The Lone Gull 10K is one of the North Shore&rsquo;s most beloved road races: a fast, scenic run along Gloucester&rsquo;s open Atlantic shoreline, starting at Good Harbor Beach with the salt air at your back and the ocean in view nearly the whole way. Runners, walkers, and adaptive athletes return year after year for the course, the community, and the cause behind it.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION: Features (from official ad) ============ -->
+<section class="band mist">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">Why Runners Love It</p>
+      <h2 class="big">What makes the Lone Gull special</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18c3-4 5-2 7-5s4-8 11-8" stroke-linecap="round"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <h4>Beautiful Course</h4>
+        <p>Coastal views, rolling terrain, and the best of Cape Ann.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>USATF Certified</h4>
+        <p>An accurate, fast, and competitive 10K course.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M6 4h12v4a6 6 0 01-12 0V4zM6 6H3v1a3 3 0 003 3M18 6h3v1a3 3 0 01-3 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Grand Prix Series</h4>
+        <p>Part of the USATF Grand Prix — compete for points.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M16 11a3 3 0 000-6M22 21c0-3-1.5-5-4-5.5" stroke-linecap="round"/></svg></div>
+        <h4>All Are Welcome</h4>
+        <p>Runners, walkers, and adaptive athletes.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M6 19V9a6 6 0 0112 0v10M9 5V3M13 5V3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Hot Breakfast</h4>
+        <p>A hot breakfast with baked goods after the race.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION: Event Details ============ -->
+<section class="band" id="details">
+  <div class="wrap">
+    <p class="eyebrow">Race Day</p>
+    <h2 class="big">Event details</h2>
+    <div class="detail-grid">
+      <ul class="facts">
+        <li><span class="k">Date</span><span class="v">Sunday, September 20, 2026</span></li>
+        <li><span class="k">Start Time</span><span class="v">9:00 AM<small>Check-in &amp; registration open 7:30 AM</small></span></li>
+        <li><span class="k">Start Line</span><span class="v">On Nautilus Rd, near the Good Harbor Beach Footbridge<small>Gloucester, MA</small></span></li>
+        <li><span class="k">Distance</span><span class="v">10K (6.2 miles)<small>USATF-certified · USATF Grand Prix Series</small></span></li>
+        <li><span class="k">Packet Pickup</span><span class="v">Race morning only<small>No early packet pickup available</small></span></li>
+        <li><span class="k">Registration</span>
+          <span class="v">
+            <div class="price">
+              <span>Standard <b>$35</b></span>
+              <span>USATF Members <b>$30</b></span>
+              <span>Day-of <b>$40</b></span>
+            </div>
+          </span>
+        </li>
+      </ul>
+      <div class="cardbox">
+        <h3>Register for 2026</h3>
+        <p style="color:var(--muted);margin:0 0 20px">Secure your spot for the Lone Gull 10K through Race Roster. Save with USATF member pricing.</p>
+        <a class="btn btn-royal" href="https://raceroster.com/events/2026/114317/lone-gull-10k-2026" target="_blank" rel="noopener" style="width:100%;justify-content:center">Register on Race Roster</a>
+        <p style="color:var(--muted);font-size:14px;margin:18px 0 0">Questions? Contact the race director at <a href="mailto:director@northshorerunfest.com">director@northshorerunfest.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION: Course ============ -->
+<section class="band mist" id="course">
+  <div class="wrap">
+    <p class="eyebrow">The Route</p>
+    <h2 class="big" style="margin-bottom:36px">A scenic seaside course</h2>
+    <div class="course-grid">
+      <a class="coursemap" href="https://www.gsrs.com/sites/default/files/maps/Lone-Gull-Route-Map-2.pdf" target="_blank" rel="noopener">
+        <img src="images/course-map.jpg" alt="Lone Gull 10K course map — coastal route through Gloucester with mile markers and directions">
+      </a>
+      <div>
+        <p style="font-size:18px;color:var(--muted);margin-top:0">Starting near Good Harbor Beach, the Lone Gull 10K runs Gloucester&rsquo;s classic oceanfront roads along the Bass Rocks and Atlantic Road shoreline — a rolling, fast course with sweeping Atlantic views from start to finish.</p>
+        <p style="color:var(--muted)">USATF-certified and part of the Grand Prix Series, it&rsquo;s a great course for a personal best — or a first 10K by the sea.</p>
+        <a class="btn btn-outline" href="https://www.gsrs.com/sites/default/files/maps/Lone-Gull-Route-Map-2.pdf" target="_blank" rel="noopener">Download Course Map (PDF)</a>
+      </div>
+    </div>
+    <!-- PHOTO GALLERY — past-years photos (swap/add more in ./images/) -->
+    <div class="gallery">
+      <a><img src="images/race-3.jpg" alt="Lead pack of Lone Gull 10K runners"></a>
+      <a><img src="images/race-2.jpg" alt="Runners at the Lone Gull 10K start on the Cape Ann coast"></a>
+      <a><img src="images/race-1.jpg" alt="Runners smiling after the Lone Gull 10K"></a>
+      <a><img src="images/hero-coast.jpg" alt="Lone Gull 10K runners along the Gloucester shoreline"></a>
+      <a><img src="images/race-4.jpg" alt="Lone Gull 10K finisher"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION: Beneficiary / The Cause ============ -->
+<section class="band navy" id="cause">
+  <div class="wrap benef">
+    <figure>
+      <img src="images/cause-signlanguage.jpg" alt="A Lone Gull 10K runner flashes the ASL sign for 'I love you' along the sunny Cape Ann coast">
+      <figcaption>Along the Cape Ann coast, a runner flashes the ASL sign for &ldquo;I love you.&rdquo;</figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow" style="color:#9fc4e8">Every Stride Gives Back</p>
+      <h2 class="big">Running for a cause</h2>
+      <p class="lead" style="color:#dce8f4">All proceeds from the Lone Gull 10K benefit <strong style="color:#fff">The Children&rsquo;s Center for Communication / Beverly School for the Deaf (CCCBSD)</strong> — providing specialized education and support that enables deaf and disabled individuals to reach their full potential.</p>
+      <p style="color:#a9c6e6">When you run the Lone Gull, you&rsquo;re helping fund the programs, therapies, and specialized education that change lives across the North Shore and beyond.</p>
+      <a class="btn btn-ghost" href="https://cccbsd.org" target="_blank" rel="noopener">Learn About CCCBSD</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION: Cross-promo — North Shore Runfest ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="promo">
+      <div>
+        <p class="eyebrow">Also on the North Shore</p>
+        <h3>Make it a season — run North Shore Runfest, too</h3>
+        <p>Love racing the North Shore? Add another to your calendar. North Shore Runfest is a 5K &amp; 8K in Salem, MA — &ldquo;more than a race: it&rsquo;s an event.&rdquo;</p>
+        <p class="meta">5K &amp; 8K · Saturday, August 30, 2026 · Salem, MA</p>
+      </div>
+      <div class="promo-cta">
+        <a class="btn btn-royal" href="https://www.northshorerunfest.com" target="_blank" rel="noopener" style="background:#fff;color:var(--royal);border-color:#fff">Visit Runfest</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION: Sponsors ============ -->
+<section class="band mist" id="sponsors">
+  <div class="wrap center">
+    <p class="eyebrow">Proudly Supported By</p>
+    <h2 class="big">Our sponsors</h2>
+    <p class="lead">The Lone Gull 10K is made possible by the generous support of local businesses and partners.</p>
+  </div>
+  <div class="wrap">
+    <div class="sponsor-grid">
+      <div class="scard"><img src="images/sponsor-1.png" alt="Institution for Savings"></div>
+      <div class="scard"><img src="images/sponsor-2.png" alt="MFM Health"></div>
+      <div class="scard"><img src="images/sponsor-3.png" alt="The Kane Family"></div>
+      <div class="scard"><img src="images/sponsor-4.png" alt="BFS — Brenner Facility Services"></div>
+    </div>
+    <div class="center" style="margin-top:34px">
+      <a class="btn btn-outline" href="mailto:director@northshorerunfest.com">Become a Sponsor</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION: Info / FAQ ============ -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Good to Know</p>
+    <h2 class="big">Race-day info</h2>
+    <div class="faq-grid">
+      <div class="faq"><h4>Parking</h4><p>Parking is available near the start by Good Harbor Beach. <em>[Confirm lots &amp; overflow.]</em></p></div>
+      <div class="faq"><h4>What&rsquo;s Included</h4><p>Chip timing, a USATF-certified course, and a hot post-race breakfast with baked goods.</p></div>
+      <div class="faq"><h4>Weather</h4><p>The race is held rain or shine. Dress for a coastal September morning by the water.</p></div>
+      <div class="faq"><h4>Awards</h4><p>Awards for top overall and age-group finishers, plus USATF Grand Prix points. <em>[Confirm categories.]</em></p></div>
+      <div class="faq"><h4>Getting Here</h4><p>Gloucester is about 45 minutes north of Boston. Nearby hotels and Airbnbs make it an easy weekend trip.</p></div>
+      <div class="faq"><h4>Contact</h4><p>Race Director · <a href="mailto:director@northshorerunfest.com">director@northshorerunfest.com</a></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION: Final CTA ============ -->
+<section class="finalcta">
+  <div class="wrap">
+    <h2>Ready to run the coast?</h2>
+    <p>Join us Sunday, September 20, 2026 for the Lone Gull 10K at Good Harbor Beach.</p>
+    <a class="btn" href="https://raceroster.com/events/2026/114317/lone-gull-10k-2026" target="_blank" rel="noopener" style="background:#fff;color:var(--royal);border-color:#fff">Register Now</a>
+  </div>
+</section>
+
+<!-- ============ SECTION: Footer ============ -->
+<footer>
+  <div class="wrap foot-main">
+    <div class="foot-brand">
+      <div class="brand">
+        <span class="txt"><b style="color:#fff;font-family:var(--disp);font-weight:700;font-size:25px">LONE GULL 10K</b><span style="color:#7f9dbd;font-size:10px;letter-spacing:.26em;font-weight:600">GLOUCESTER · CAPE ANN</span></span>
+      </div>
+      <p>An iconic seaside 10K on the rocky coast of Cape Ann &mdash; scenic, fast, and meaningful.</p>
+    </div>
+    <div>
+      <h5>Race</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a href="#course">Course</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Register</h5>
+      <ul>
+        <li><a href="https://raceroster.com/events/2026/114317/lone-gull-10k-2026" target="_blank" rel="noopener">Sign Up</a></li>
+        <li><a href="https://www.gsrs.com/sites/default/files/maps/Lone-Gull-Route-Map-2.pdf" target="_blank" rel="noopener">Course Map</a></li>
+        <li><a href="https://www.northshorerunfest.com" target="_blank" rel="noopener">North Shore Runfest</a></li>
+        <li><a href="https://cccbsd.org" target="_blank" rel="noopener">CCCBSD</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:director@northshorerunfest.com">director@northshorerunfest.com</a></li>
+        <li>Gloucester, MA 01930</li>
+      </ul>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-3.5H13V8.3c0-1 .3-1.7 1.8-1.7H16.6V3.5C16.3 3.4 15.2 3.3 14 3.3c-2.5 0-4.2 1.5-4.2 4.3v2.9H7V14h2.8v8H13z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 8.8A3.2 3.2 0 1 0 15.2 12 3.2 3.2 0 0 0 12 8.8zm0 5.3A2.1 2.1 0 1 1 14.1 12 2.1 2.1 0 0 1 12 14.1zm4.1-5.4a.75.75 0 1 1-.75-.75.75.75 0 0 1 .75.75zM19 8.7a5 5 0 0 0-1.4-3.5A5 5 0 0 0 14.1 3.8c-1.4-.08-5.6-.08-7 0A5 5 0 0 0 3.6 5.2 5 5 0 0 0 2.2 8.7c-.08 1.4-.08 5.6 0 7a5 5 0 0 0 1.4 3.5 5 5 0 0 0 3.5 1.4c1.4.08 5.6.08 7 0a5 5 0 0 0 3.5-1.4A5 5 0 0 0 19 15.7c.08-1.4.08-5.6 0-7zM17.6 17a2.8 2.8 0 0 1-1.6 1.6c-1.1.44-3.7.34-4.9.34s-3.8.1-4.9-.34A2.8 2.8 0 0 1 4.6 17c-.44-1.1-.34-3.7-.34-4.9s-.1-3.8.34-4.9A2.8 2.8 0 0 1 6.2 5.6c1.1-.44 3.7-.34 4.9-.34s3.8-.1 4.9.34A2.8 2.8 0 0 1 17.6 7c.44 1.1.34 3.7.34 4.9s.1 3.8-.34 5z"/></svg></a>
+        <a href="#" aria-label="Strava"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.8 3 4.5 13.6h3.1L9.8 9l2.2 4.6h3.1L9.8 3zm4.3 10.6L12.6 16l-1.5-2.4H8.9l3.7 6.4 3.7-6.4h-2.2z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <div>&copy; 2026 Lone Gull 10K</div>
+    <div>Designed and maintained by <a href="https://octocog.com" target="_blank" rel="noopener">OctoCog Marketing &amp; Design</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
