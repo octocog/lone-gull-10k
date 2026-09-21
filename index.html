@@ -103,8 +103,8 @@
   .band.navy .lead{color:#c6d5e7}
 
   /* ============ SECTION: Features ============ */
-  .feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px}
-  .feat{text-align:center;padding:8px}
+  .feat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 26px;margin-top:44px}
+  .feat{text-align:center;padding:8px;flex:1 1 180px;max-width:280px}
   .feat .ic{width:56px;height:56px;margin:0 auto 14px;border-radius:14px;background:var(--mist);display:flex;align-items:center;justify-content:center;color:var(--royal)}
   .feat .ic svg{width:30px;height:30px}
   .feat h4{font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em;color:var(--navy);font-size:18px;margin:0 0 6px}
@@ -198,7 +198,6 @@
     nav.links{display:none}
     .burger{display:block}
     .detail-grid,.course-grid,.benef,.promo{grid-template-columns:1fr}
-    .feat-grid{grid-template-columns:repeat(2,1fr)}
     .foot-main{grid-template-columns:1fr 1fr}
     .gallery{grid-template-columns:repeat(2,1fr)}
     .sponsor-grid{grid-template-columns:repeat(2,1fr)}
@@ -210,7 +209,6 @@
     .badge{margin:0 auto}
   }
   @media (max-width:560px){
-    .feat-grid{grid-template-columns:1fr}
     .gallery .ph:first-child{grid-column:span 2}
     .foot-main{grid-template-columns:1fr}
   }
@@ -439,10 +437,10 @@
     <p class="eyebrow">Good to Know</p>
     <h2 class="big">Race-day info</h2>
     <div class="faq-grid">
-      <div class="faq"><h4>Parking</h4><p>Parking is available near the start by Good Harbor Beach. <em>[Confirm lots &amp; overflow.]</em></p></div>
+      <div class="faq"><h4>Parking</h4><p>Parking is available near the start by Good Harbor Beach.</p></div>
       <div class="faq"><h4>What&rsquo;s Included</h4><p>Chip timing, a USATF-certified course, and post-race refreshments.</p></div>
       <div class="faq"><h4>Weather</h4><p>The race is held rain or shine. Dress for a coastal September morning by the water.</p></div>
-      <div class="faq"><h4>Awards</h4><p>Awards for top overall and age-group finishers, plus USATF Grand Prix points. <em>[Confirm categories.]</em></p></div>
+      <div class="faq"><h4>Awards</h4><p>Awards for top overall and age-group finishers, plus USATF Grand Prix points.</p></div>
       <div class="faq"><h4>Getting Here</h4><p>Gloucester is about 45 minutes north of Boston. Nearby hotels and Airbnbs make it an easy weekend trip.</p></div>
       <div class="faq"><h4>Contact</h4><p>Race Director · <a href="mailto:director@northshorerunfest.com">director@northshorerunfest.com</a></p></div>
     </div>
