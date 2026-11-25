@@ -33,6 +33,7 @@
   .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:18px;padding:14px 30px;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:.15s;white-space:nowrap}
   .btn-royal{background:var(--royal);color:#fff;border-color:var(--royal)}
   .btn-royal:hover{background:var(--royal-dark);border-color:var(--royal-dark);color:#fff}
+  .btn-off{background:transparent;color:var(--muted);border-color:var(--line);cursor:not-allowed;pointer-events:none}
 
   /* header (white) — matches homepage */
   header.nav{position:sticky;top:0;z-index:50;background:#fff;color:var(--navy);box-shadow:0 2px 16px rgba(12,45,79,.1);border-bottom:1px solid var(--line)}
@@ -118,7 +119,7 @@
         "@id": "https://lonegull10k.com/#website"
       },
       "about": {
-        "@id": "https://lonegull10k.com/#race2026"
+        "@id": "https://lonegull10k.com/#race2027"
       }
     },
     {
@@ -159,7 +160,7 @@
       <a href="./" class="active">Results</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-royal" href="https://raceroster.com/events/2026/114317/lone-gull-10k-2026" target="_blank" rel="noopener">Register</a>
+      <span class="btn btn-off" aria-disabled="true">Registration Opens Soon</span>
       <button class="burger" aria-label="Menu" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
     </div>
   </div>
@@ -261,7 +262,6 @@
     <div>
       <h5>Register</h5>
       <ul>
-        <li><a href="https://raceroster.com/events/2026/114317/lone-gull-10k-2026" target="_blank" rel="noopener">Sign Up</a></li>
         <li><a href="https://www.gsrs.com/sites/default/files/maps/Lone-Gull-Route-Map-2.pdf" target="_blank" rel="noopener">Course Map</a></li>
         <li><a href="https://www.northshorerunfest.com" target="_blank" rel="noopener">North Shore Runfest</a></li>
       </ul>
